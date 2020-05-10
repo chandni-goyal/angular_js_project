@@ -1,0 +1,31 @@
+<html ng-app>
+	<head>
+		
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		
+
+	</head>
+	<body ng-init="employees=[{name:'John Abrahim',dob:'12/12/1993',emp_code:'A10223',address:'#631 Mohali'},
+							{name:'Anita Gupta',dob:'1/02/1892',emp_code:'B10123',address:'#631 Ludhiana'},
+							{name:'Max Flindt',dob:'21/04/1990',emp_code:'V10783',address:'#213 Rajpura'},
+							{name:'Chandni Goyal',dob:'17/06/1993',emp_code:'G873467',address:'#342 Patiala'}]"
+								 style="padding:30px">
+
+		<p><input placeholder="Search for ..... " ng-model="searchText" /></p>	
+		
+			<div class="card" ng-repeat="employee in employees | filter:searchText | orderBy:'dob' "
+					style="margin-right: 10px;float: left;width: 300px;" >
+				<div class="card-header bg-primary text-white">
+					<h2 class="card-title">{{employee.name}}</h2>
+				</div>
+				<div class="card-body">
+					Employee Code : {{employee.emp_code}} </br>
+					Date of Birth : {{employee.dob}} </br>
+					Employee Address : {{employee.address}} </br>
+				</div>
+			</div>
+	</body>
+</html>

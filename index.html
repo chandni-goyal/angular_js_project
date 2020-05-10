@@ -1,0 +1,61 @@
+<html ng-app="myApp">
+	<head>
+		
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		
+
+	</head>
+	<body  ng-controller="MyController" style="padding:30px">
+
+		<p><input placeholder="Search for ..... " ng-model="searchText" /></p>	
+		
+			<div class="card" ng-repeat="employee in employees | filter:searchText | orderBy:'dob' "
+					style="margin-right: 10px;float: left;width: 300px;" >
+				<div class="card-header bg-primary text-white">
+					<h2 class="card-title">{{employee.name}}</h2>
+				</div>
+				<div class="card-body">
+					Employee Code : {{employee.emp_code}} </br>
+					Date of Birth : {{employee.dob}} </br>
+					Employee Address : {{employee.address}} </br>
+				</div>
+			</div></br>
+
+			<div class="card" style="float: left; margin: 50px 1px;">
+				<div class="card-header bg-primary text-white">Add New Employee</div>
+				<form name="new_employee_form" >
+					<div class="card-body">
+						<input type="text" placeholder="Enter new employee name ..... " size="100" ng-model="new_employee.name" /></p>	
+						<input type="text" placeholder="Enter new employee code ..... " size="100" ng-model="new_employee.emp_code" /></p>	
+						<input type="text" placeholder="Enter new employee date of birth ..... " size="100" ng-model="new_employee.dob" /></p>	
+						<input type="text" placeholder="Enter new employee address ..... " size="100" ng-model="new_employee.address" /></p>
+
+
+						<button type="button" ng-click="add_employee(new_employee)" class="btn btn-success">Add Employee</button>	
+					</div>
+				</form>
+			</div>
+
+		<script>
+			var myApp = angular.module('myApp',[]);
+
+
+			myApp.controller('MyController', ['$scope', function($scope) {
+			  $scope.employees = [{name:'John Abrahim',dob:'12/12/1993',emp_code:'A10223',address:'#631 Mohali'},
+								{name:'Anita Gupta',dob:'1/02/1892',emp_code:'B10123',address:'#631 Ludhiana'},
+								{name:'Max Flindt',dob:'21/04/1990',emp_code:'V10783',address:'#213 Rajpura'},
+								{name:'Chandni Goyal',dob:'17/06/1993',emp_code:'G873467',address:'#342 Patiala'}
+								];
+
+				$scope.add_employee = function(employee){
+					$scope.employees.push(employee);
+
+				}
+			}]);
+		</script>
+	</body>
+
+</html>
